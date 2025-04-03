@@ -1,10 +1,19 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import sys
+
 '''
 Script to read, clean and plot NASA EVA data.
 This uses data from https://data.nasa.gov/resource/eva.json (with modifications)
 The script will plot and save a figure of cumulative time in space.
 '''
+
+def main(input_file, output_file, graph_file):
+    eva_data=read_json_to_dataframe(input_file)
+    write_dataframe_to_csv(eva_data,output_file)
+    plot_cumulative_time(eva_data,graph_file)
+    print("EVA analysis has finished")
+
 
 def read_json_to_dataframe(input_file):
     '''
@@ -28,6 +37,7 @@ def read_json_to_dataframe(input_file):
     eva_data.sort_values('date',inplace=True)
     return eva_data
 
+
 def write_dataframe_to_csv(df, outfile):
     '''
     Write a pandas dataframe to a csv file
@@ -42,10 +52,12 @@ def write_dataframe_to_csv(df, outfile):
     '''
     df.to_csv(outfile, index=False)
 
+
 def text_to_duration(duration):
     hours, minutes = duration.split(":")
     duration_hours = int(hours) + int(minutes)/6
     return duration_hours
+
 
 def add_duration_hours(df):
     """
@@ -60,7 +72,6 @@ def add_duration_hours(df):
         text_to_duration
         )
     return df_copy
-
 
 
 def plot_cumulative_time(df, graph_file):
@@ -86,15 +97,19 @@ def plot_cumulative_time(df, graph_file):
 
 
 
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        input_file = './eva-data.json'
+        output_file = './eva-data.csv'
+    else:
+        input_file = sys.argv[1]
+        outfile = sys.argv[2]
 
 # Opening input and output files and setting graph file name
-graph_file = 'myplot.png'
-input_file = open('./eva-data.json', 'r', encoding="utf-8")
-eva_data=read_json_to_dataframe(input_file)
+graph_file = './cumulative_eva_graph.png'
+main(input_file, output_file, graph_file)
 
-write_dataframe_to_csv(eva_data,'./eva-data.csv')
 
-plot_cumulative_time(eva_data,graph_file)
 
 
 
