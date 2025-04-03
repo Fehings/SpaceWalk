@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import sys
+import re
 
 '''
 Script to read, clean and plot NASA EVA data.
@@ -9,11 +10,44 @@ The script will plot and save a figure of cumulative time in space.
 '''
 
 def main(input_file, output_file, graph_file):
-    eva_data=read_json_to_dataframe(input_file)
+    eva_data = read_json_to_dataframe(input_file)
+    eva_data = add_crew_size_column(eva_data)
     write_dataframe_to_csv(eva_data,output_file)
     plot_cumulative_time(eva_data,graph_file)
     print("EVA analysis has finished")
 
+
+def calculate_crew_size(crew):
+    """
+    Calculate the size of the crew for a single crew entry
+
+    Args:
+        crew (str): The text entry in the crew column containing a list of crew member names
+
+    Returns:
+        (int): The crew size
+    """
+    if crew.split() == []:
+        return None
+    else:
+        return len(re.split(r';', crew))-1
+
+def add_crew_size_column(df):
+    """
+    Add crew_size column to the dataset containing the value of the crew size
+
+    Args:
+        df (pd.DataFrame): The input data frame.
+
+    Returns:
+        df_copy (pd.DataFrame): A copy of df with the new crew_size variable added
+    """
+    print('Adding crew size variable (crew_size) to dataset')
+    df_copy = df.copy()
+    df_copy["crew_size"] = df_copy["crew"].apply(
+        calculate_crew_size
+    )
+    return df_copy
 
 def read_json_to_dataframe(input_file):
     '''
@@ -55,7 +89,7 @@ def write_dataframe_to_csv(df, outfile):
 
 def text_to_duration(duration):
     hours, minutes = duration.split(":")
-    duration_hours = int(hours) + int(minutes)/6
+    duration_hours = int(hours) + int(minutes)/60
     return duration_hours
 
 
@@ -105,9 +139,9 @@ if __name__ == "__main__":
         input_file = sys.argv[1]
         outfile = sys.argv[2]
 
-# Opening input and output files and setting graph file name
-graph_file = './results/cumulative_eva_graph.png'
-main(input_file, output_file, graph_file)
+    # Opening input and output files and setting graph file name
+    graph_file = './results/cumulative_eva_graph.png'
+    main(input_file, output_file, graph_file)
 
 
 
