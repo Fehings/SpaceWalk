@@ -21,7 +21,7 @@ for i in range(374):
 ## Comment out this bit if you don't want the spreadsheet
 
 
-w=csv.writer(data_out)
+writeout=csv.writer(data_out)
 
 
 
@@ -32,16 +32,16 @@ j=0
 for i in eva_data:
     print(eva_data[j])
     # and this bit
-    w.writerow(eva_data[j].values())
+    writeout.writerow(eva_data[j].values())
     if 'duration' in eva_data[j].keys():
-        tt=eva_data[j]['duration']
-        if tt == '':
+        duration=eva_data[j]['duration']
+        if duration == '':
             pass
         else:
-            t=dt.datetime.strptime(tt,'%H:%M')
-            ttt = dt.timedelta(hours=t.hour, minutes=t.minute, seconds=t.second).total_seconds()/(60*60)
-            print(t,ttt)
-            time.append(ttt)
+            eva_dur=dt.datetime.strptime(duration,'%H:%M')
+            eva_dur_sec = dt.timedelta(hours=eva_dur.hour, minutes=eva_dur.minute, seconds=eva_dur.second).total_seconds()/(60*60)
+            print(eva_dur,eva_dur_sec)
+            time.append(eva_dur_sec)
             if 'date' in eva_data[j].keys():
                 date.append(dt.datetime.strptime(eva_data[j]['date'][0:10], '%Y-%m-%d'))
                 #date.append(data[j]['date'][0:10])
@@ -50,15 +50,15 @@ for i in eva_data:
                 time.pop(0)
     j+=1
 
-t=[0]
+eva_dur=[0]
 for i in time:
-    t.append(t[-1]+i)
+    eva_dur.append(eva_dur[-1]+i)
 
 date,time = zip(*sorted(zip(date, time)))
 
 
 
-plt.plot(date,t[1:], 'ko-')
+plt.plot(date,eva_dur[1:], 'ko-')
 plt.xlabel('Year')
 plt.ylabel('Total time spent in space to date (hours)')
 plt.tight_layout()
