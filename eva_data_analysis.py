@@ -137,7 +137,7 @@ if __name__ == "__main__":
         output_file = './results/eva-data.csv'
     else:
         input_file = sys.argv[1]
-        outfile = sys.argv[2]
+        output_file = sys.argv[2]
 
     # Opening input and output files and setting graph file name
     graph_file = './results/cumulative_eva_graph.png'
