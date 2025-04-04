@@ -57,6 +57,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#how-to-guide" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -195,6 +200,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    How-To Guides
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="how-to-guides.html" class="md-nav__link md-nav__link--active">
         
@@ -207,6 +227,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-install-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to install the software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-it-to-analyse-nasa-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using it to analyse NASA data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-default-output-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing the default output destination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extending the code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -273,6 +348,52 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-install-the-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to install the software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-it-to-analyse-nasa-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using it to analyse NASA data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-the-default-output-destination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing the default output destination
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-the-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extending the code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -288,9 +409,50 @@
 
 
 
-  <h1>How-To Guides</h1>
-
-
+<h1 id="how-to-guide">How-To Guide</h1>
+<p>This guide shows you how to install this software, and how use it to analyse data about space walks.</p>
+<h2 id="how-to-install-the-software">How to install the software</h2>
+<p>To install Spacewalks, either clone the git repository (recommended):</p>
+<ul>
+<li>
+<p>Open the command line terminal or powershell, and navigate to the directory you want to install in.</p>
+</li>
+<li>
+<p>Then type: </p>
+</li>
+</ul>
+<pre><code>git clone git@github.com:Fehings/SpaceWalk.git
+cd spacewalks
+</code></pre>
+<ul>
+<li>Install the necessary dependencies:</li>
+</ul>
+<pre><code>python3 -m pip install pandas==2.2.2 matplotlib==3.8.4 numpy==2.0.0 pytest==7.4.2
+</code></pre>
+<ul>
+<li>To ensure everything is working correctly, run the tests using pytest.</li>
+</ul>
+<pre><code>python3 -m pytest
+</code></pre>
+<p>or click on the &lt;&gt;code button and select <code>download zip</code>, then unzip in the location you want to install
+and follow the dependency installation and testing above. This will mean your code isn't being version 
+controlled though so we recommend creating a git repository to keep track of changes if you do this!</p>
+<h2 id="using-it-to-analyse-nasa-data">Using it to analyse NASA data</h2>
+<p>Run the main script from the terminal with:</p>
+<pre><code>Python eva_data_analysis.py input_data.json output_filename.csv
+</code></pre>
+<p>Where you replace <code>input_data.json</code> with your input eva data, and the <code>output_filename.csv</code> 
+is replaced with whatever filename you want to save as, with a csv extension.</p>
+<p>e.g.</p>
+<pre><code>Python eva_data_analysis.py data/eva-data.json results/eva-data.csv
+</code></pre>
+<p>should work with the included demo data. </p>
+<h2 id="changing-the-default-output-destination">Changing the default output destination</h2>
+<p>If you pass the output file from the command line then you can call the output whatever you want!</p>
+<p>E.g. if you want to send the output to a 'new_analysis' folder, but to run with the included data, you could
+ modify the command you run to be:
+ <code>Python eva_data_analysis.py data/eva-data.json new_analysis/eva-data.csv</code></p>
+<h2 id="extending-the-code">Extending the code</h2>
 
 
 
