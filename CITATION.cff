@@ -1,0 +1,15 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Spacewalks
+message: 'Analysis script to read, clean and plot NASA EVA data'
+type: software
+authors:
+  - given-names: Frances
+    family-names: Turner
+    email: frances.hutchings@newcastle.ac.uk
+    affiliation: Newcastle University
+    orcid: 'https://orcid.org/0000-0003-3255-6962'
+repository-code: 'https://github.com/Fehings/SpaceWalk'
+license: MIT
