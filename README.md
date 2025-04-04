@@ -4,6 +4,11 @@
 Spacewalks is a Python analysis tool for researchers to generate visualisations
  and statistical summaries of NASA's extravehicular activity datasets.
 
+## Initial release:
+
+[![DOI](https://sandbox.zenodo.org/badge/959122825.svg)](https://handle.stage.datacite.org/10.5072/zenodo.194389)
+
+
  ## Features 
  Key features of Spacewalks:
 
