@@ -20,7 +20,6 @@ Spacewalks is a Python analysis tool for researchers to generate visualisations
  You will also need the following libraries:
 
  - [NumPy](https://www.numpy.org) >=2.0.0 - Spacewalks' test suite uses Numpy's statistical functions.
-
 - [Matplotlib](https://matplotlib.org/stable/index.html) >= 3.0.0 - Spacewalks uses Matplotlib to make plots.
 - [pytest](https://docs.pytest.org/en/8.2.x/#) >= 8.2.0 - Spavewalks uses Pytest for its test suite.
 - [pandas](https://pandas.pydata.org) >= 2.2.0 - Used for data frame manipulation and loading/saving data.
@@ -31,21 +30,40 @@ To install Spacewalks, either clone the git repository (recommended):
 
 - Open the command line terminal or powershell, and navigate to the directory you want to install in.
 
-- Then type: `git clone git@github.com:Fehings/SpaceWalk.git`
+- Then type: 
 
+```
+git clone git@github.com:Fehings/SpaceWalk.git
+cd spacewalks
+```
+
+- Install the necessary dependencies:
+```
+python3 -m pip install pandas==2.2.2 matplotlib==3.8.4 numpy==2.0.0 pytest==7.4.2
+```
+
+- To ensure everything is working correctly, run the tests using pytest.
+
+```
+python3 -m pytest
+```
 or click on the <>code button and select `download zip`, then unzip in the location you want to install.
 
 ## Usage example
 
 Run the main script from the terminal with:
 
-`Python eva_data_analysis.py input_data.json output_filename.csv`
+```
+Python eva_data_analysis.py input_data.json output_filename.csv
+```
 
 Where you replace `input_data.json` with your input eva data, and the `output_filename.csv` 
 is replaced with whatever filename you want to save as, with a csv extension.
 
 e.g.
-`Python eva_data_analysis.py data/eva-data.json results/eva-data.csv`
+```
+Python eva_data_analysis.py data/eva-data.json results/eva-data.csv
+```
 
 should work with the included demo data. 
 
