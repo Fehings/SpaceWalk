@@ -1,6 +1,6 @@
-# Welcome to MkDocs
+# Welcome to Space Walks Documentation
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Find the code at https://github.com/Fehings/SpaceWalk
 
 ## Commands
 
